@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+
+<!--
+	Originally written by Alex Gordon of Fileability
+	     http://fileability.net
+	
+	This is in the public domain.
+-->
+
+<syntax name="sourcecode.m">
+    <zones>
+        <include syntax="sourcecode.c"/>
+        
+       	<zone name="entity.class.interface.objc">
+			<expression>@interface\s+([A-Za-z_$][A-Za-z_$0-9]*)(\s*:\s*([A-Za-z_$][A-Za-z_$0-9]*))?</expression>
+			<capture number="1" name="entity.class.interface.self.name"/>
+			<capture number="3" name="entity.class.interface.super.name"/>
+		</zone>
+		<zone name="entity.class.implementation.objc">
+			<expression>@implementation\s+([A-Za-z_$][A-Za-z_$0-9]*)(\s*:\s*([A-Za-z_$][A-Za-z_$0-9]*))?</expression>
+			<capture number="1" name="entity.class.implementation.self.name"/>
+		</zone>
+		<zone name="entity.end.objc">
+			<expression>@end</expression>
+		</zone>
+		
+	<!--	<zone name="function.method.signature.objc">
+			<expression>^(+|\-)\s*([A-Za-z_$][A-Za-z_$0-9]*)?:(\(([A-Za-z_$0-9<>*\[\]]|\s)+\))?[A-Za-z_$][A-Za-z_$0-9]*((\s+[A-Za-z_$][A-Za-z_$0-9]*|\s*):(\(([A-Za-z_$0-9<>*\[\]]|\s)+\))?[A-Za-z_$][A-Za-z_$0-9]*)*</expression>
+			<capture number="1" name="entity.class.implementation.self.name"/>
+		</zone>
+	-->	
+		<zone name="function.method.signature.objc">
+            <starts-with>
+                <expression>^(-|\+)\s*</expression>
+            </starts-with>
+            <ends-with>
+                <expression>(?=\{)|;</expression>
+            </ends-with>
+            <subzones>
+                <zone name="meta.return-type.objc">
+                    <starts-with>
+                        <expression>(\()</expression>
+                        <capture number="1" name="punctuation.definition.type.objc"/>
+                        <capture number="2" name="entity.name.function.objc"/>
+                    </starts-with>
+                    <ends-with>
+                        <expression>(\))\s*(\w+\b)</expression>
+                        <capture number="1" name="punctuation.definition.type.objc"/>
+                        <capture number="2" name="entity.name.function.objc"/>
+                    </ends-with>
+                    <subzones>
+                        <include collection="protocol_list"/>
+                        <include collection="protocol_type_qualifier"/>
+                        <include syntax="$base"/>
+                    </subzones>
+                </zone>
+                <zone name="entity.name.function.name-of-parameter.objc">
+                    <expression>\b\w+(?=:)</expression>
+                </zone>
+                <zone name="meta.argument-type.objc">
+                    <starts-with>
+                        <expression>((:))\s*(\()</expression>
+                        <capture number="1" name="entity.name.function.name-of-parameter.objc"/>
+                        <capture number="2" name="punctuation.separator.arguments.objc"/>
+                        <capture number="3" name="punctuation.definition.type.objc"/>
+                    </starts-with>
+                    <ends-with>
+                        <expression>(\))\s*(\w+\b)?</expression>
+                        <capture number="1" name="punctuation.definition.type.objc"/>
+                        <capture number="2" name="variable.parameter.function.objc"/>
+                    </ends-with>
+                    <subzones>
+                        <include collection="protocol_list"/>
+                        <include collection="protocol_type_qualifier"/>
+                        <include syntax="$base"/>
+                    </subzones>
+                </zone>
+                <include collection="comment"/>
+            </subzones>
+        </zone>
+		
+		<!--
+		([A-Za-z_$][A-Za-z_$0-9]*)?:(\(([A-Za-z_$0-9<>*\[\]]|\s)+\))?[A-Za-z_$][A-Za-z_$0-9]*((\s+[A-Za-z_$][A-Za-z_$0-9]*|\s*):(\(([A-Za-z_$0-9<>*\[\]]|\s)+\))?[A-Za-z_$][A-Za-z_$0-9]*)*
+		
+		[IDENT]:[(TYPE)]IDENT((\s+IDENT|\s*):[(TYPE)]IDENT)*
+		IDENT = [A-Za-z_$][A-Za-z_$0-9]*
+		TYPE = ([A-Za-z_$0-9<>*\[\]]|\s)+
+	-->
+        
+	
+
+    </zones>
+    <library>
+		
+	</library>
+</syntax>

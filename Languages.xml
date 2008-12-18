@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<settings>
+
+	<language id="espresso.default.ObjC">
+		
+		<root-zone>sourcecode.m</root-zone>
+		<name>Objective-C</name>
+		<detectors>
+			<extension>m</extension>
+            <extension>h</extension>
+		</detectors>
+		
+	</language>
+	
+</settings>

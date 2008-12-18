@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- ***********************
+	
+	C Sugar. Made by Alex Gordon.
+	alextgordon@gmail.com
+	www.fileability.net
+
+	Public Domain:
+I, the copyright holder of this work, hereby release it into the public domain. This applies worldwide.
+In case this is not legally possible,
+I grant any entity the right to use this work for any purpose, without any conditions, unless such conditions are required by law.
+
+     *********************** -->
+
+<codesense version="1.0">
+	<behavior>
+		<append-dynamic>
+
+		        <!-- The matched suffix allows you to capture information about the text 
+		             after the completion. Specify a regular expression here. -->
+		        <matched-suffix>.*</matched-suffix>
+
+		        <!-- The transform-into element is a regex replacement expression, and can use 
+		        the captured strings from matched-suffix to generate a conditional snippet. -->
+		        <transform-into>#0( )</transform-into>
+
+		    </append-dynamic>
+		
+	</behavior>
+
+	<set name="net.fileability.c.keyword">
+			<completion string="auto" />
+			<completion string="break" />
+			<completion string="case" />
+			<completion string="const" />
+			<completion string="continue" />
+			<completion string="default" />
+			<completion string="do" />
+			<completion string="else" />
+			<completion string="enum" />
+			<completion string="extern" />
+			<completion string="for" />
+			<completion string="goto" />
+			<completion string="if" />
+			<completion string="inline" />
+			<completion string="register" />
+			<completion string="restrict" />
+			<completion string="return" />
+			<completion string="signed" />
+			<completion string="sizeof" />
+			<completion string="static" />
+			<completion string="struct" />
+			<completion string="switch" />
+			<completion string="typedef" />
+			<completion string="union" />
+			<completion string="unsigned" />
+			<completion string="void" />
+			<completion string="volatile" />
+			<completion string="while" />
+			<completion string="_Bool" />
+			<completion string="_Complex" />
+			<completion string="_Imaginary" />
+	</set>
+	<set name="net.fileability.c.storage.type">
+			<completion string="char" />
+			<completion string="double" />
+			<completion string="float" />
+			<completion string="int" />
+			<completion string="long" />
+			<completion string="short" />
+	</set>
+	
+</codesense>
